@@ -5,23 +5,21 @@
 
 void dac_init(void) {
 
+    // Enable the 1.5 V internal reference
+    /* NOTE: the MSP430FR2355 internal reference defaults to 1.5 V, but
+             but can be changed to 2.0 or 2.5V. */
+    PMMCTL2 |= INTREFEN;
 
     // Set the DAC reference to the internal 1.5 V reference
-    /* NOTE: the MSP430FR2355 internal reference defaults to 1.5 V, but
-             but can be changed to 2.0 or 2.5V */
     // TODO: internal reference doesn't work. I must need to do some additional settings
-    const DACSREF_BIT_POS = 12;
-    const SET_DACSREF_TO_INTERNAL_REF = 1 << DACSREF_BIT_POS;
-    SAC0DAC |= DACSREF_0;
-    SAC1DAC |= DACSREF_0;
+    SAC0DAC |= DACSREF_1;
+    SAC1DAC |= DACSREF_1;
 
     // Multiplex the P1.1 and P1.5 to select the DAC outputs
     P1SEL1 |= BIT1 | BIT5;
     P1SEL0 |= BIT1 | BIT5;
 
     // Enable the DACs
-    const DACEN_BIT_POS = 0;
-    const ENABLE_DAC = 1 << DACEN_BIT_POS;
     SAC0DAC |= DACEN;
     SAC1DAC |= DACEN;
 
@@ -46,8 +44,6 @@ void dac_init(void) {
     SAC1OA |= OAEN;
 
     // Enable smart analog combo (SAC) modules 0 and 1
-    const SACEN_BIT_POS = 10;
-    const ENABLE_SAC = 1 << SACEN_BIT_POS;
     SAC0OA |= SACEN;
     SAC1OA |= SACEN;
 
@@ -78,8 +74,8 @@ void main(void) {
     init();
 
     // set DAC voltages
-    SAC0DAT = 0x03ffu;
-    SAC1DAT = 0x0affu;
+    SAC0DAT = 0x0555u;
+    SAC1DAT = 0x0fffu;
 
     while(true) {
         volatile unsigned int i;            // volatile to prevent optimization
