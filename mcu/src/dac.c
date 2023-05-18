@@ -4,6 +4,10 @@
 
 void init_dac(void)
 {
+    // I used section 2.5 of the following app note to figure out
+    // how to configure the "smart analog combo" to operate in DAC mode
+    // https://www.ti.com/lit/an/slaa833a/slaa833a.pdf
+
     // Enable the 1.5 V internal reference
     /* NOTE: the MSP430FR2355 internal reference defaults to 1.5 V, but
              but can be changed to 2.0 or 2.5V. */
