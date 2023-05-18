@@ -7,18 +7,19 @@
 
 // Set up DACs
 // TODO: maybe I should pass these into the init function instead of using globals...
-struct dac_t dac0 = 
+struct dac_t dac2 =
 {
-    .sac_base_addr = SAC0_BASE,
-    .port_base_addr = PA_BASE,
+    .sac_base_addr = SAC2_BASE,
+    .port_base_addr = P3_BASE,
     .port_bit = BIT1,
 };
-struct dac_t dac1 = 
+struct dac_t dac3 =
 {
-    .sac_base_addr = SAC1_BASE,
-    .port_base_addr = PA_BASE,
+    .sac_base_addr = SAC3_BASE,
+    .port_base_addr = P3_BASE,
     .port_bit = BIT5,
 };
+
 
 void init(void)
 {
@@ -31,21 +32,21 @@ void init(void)
     // SET P1.0 direction as output
     P1DIR |= 0x01;
 
-
-    init_dac(dac0);
-    init_dac(dac1);
+    init_dac(dac2);
+    init_dac(dac3);
 
     init_uart();
 }
 
 
-void main(void) {
+void main(void)
+{
 
     init();
 
     // set DAC voltages
-    set_dac_data(dac0, 0x01aau);
-    set_dac_data(dac1, 0x0fffu);
+    set_dac_data(dac2, 0x0abcu);
+    set_dac_data(dac3, 0x0fffu);
 
     P1OUT |= BIT1;
 
