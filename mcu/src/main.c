@@ -6,7 +6,8 @@
 #include "uart.h"
 
 
-void init(void) {
+void init(void)
+{
     // Disable watchdog timer
     WDTCTL = WDTPW | WDTHOLD;
 
@@ -15,8 +16,6 @@ void init(void) {
 
     // SET P1.0 direction as output
     P1DIR |= 0x01;
-
-    P6DIR |= BIT6;
 
     init_dac();
     init_uart();
@@ -33,14 +32,9 @@ void main(void) {
 
     P1OUT |= BIT1;
 
-     while(true) {
-        //  volatile unsigned int i;            // volatile to prevent optimization
+    while(true)
+    {
 
-        //  P6OUT ^= BIT6;                      // Toggle P1.0 using exclusive-OR
-
-        //  i = 50000u;                          // SW Delay
-        //  do i--;
-        //  while(i != 0);
-     }
+    }
 
 }
