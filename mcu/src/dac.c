@@ -2,61 +2,68 @@
 
 #include "dac.h"
 
-void init_dac(void)
+void init_dac(struct dac_t dac)
 {
     // I used section 2.5 of the following app note to figure out
     // how to configure the "smart analog combo" to operate in DAC mode
     // https://www.ti.com/lit/an/slaa833a/slaa833a.pdf
 
+    // Define the register base addresses for the particular SACx module
+    // that the dac struct is set up for. The base_addr in the dac struct
+    // defines the base address of the SAC module. The register offsets for
+    // each module are the same, so we use the SAC0 offset defintions, which
+    // are defined in msp420fr2355.h
+    uint16_t *DAC_REG = dac.sac_base_addr + OFS_SAC0DAC;
+    uint16_t *OA_REG = dac.sac_base_addr + OFS_SAC0OA;
+    uint16_t *PGA_REG = dac.sac_base_addr + OFS_SAC0PGA;
+
+    // Define the base addresses for the port multiplexing registers, PxSEL1 and
+    // PxSEL0. These offsets are the same for all ports, and are defined in
+    // msp430fr2355.h. We use the port A offsets.
+    uint16_t *PX_SEL0 = dac.port_base_addr + OFS_PASEL0; 
+    uint16_t *PX_SEL1 = dac.port_base_addr + OFS_PASEL1; 
+
     // Enable the 1.5 V internal reference
     /* NOTE: the MSP430FR2355 internal reference defaults to 1.5 V, but
              but can be changed to 2.0 or 2.5V. */
+    // This will be enabled each time a DAC is initialized, but that's okay
+    // because the bit will always be a 1 after the first initialization.
     PMMCTL2 |= INTREFEN;
 
     // Set the DAC reference to the internal 1.5 V reference
-    // TODO: internal reference doesn't work. I must need to do some additional settings
-    SAC0DAC |= DACSREF_1;
-    SAC1DAC |= DACSREF_1;
+    *DAC_REG |= DACSREF_1;
 
-    // Multiplex the P1.1 and P1.5 to select the DAC outputs
-    P1SEL1 |= BIT1 | BIT5;
-    P1SEL0 |= BIT1 | BIT5;
+    // Multiplex the pin to select the DAC output
+    // The PxSELx is set to 0b11 to enable the DAC output on that pin.
+    // The bit # in PxSEL corresponds to the pin # on that port. 
+    // Both SEL1[pin #] and SEL0[pin #] need to be set to a 1.
+    *PX_SEL1 |= dac.port_bit;
+    *PX_SEL0 |= dac.port_bit;
 
     // Enable the DACs
-    SAC0DAC |= DACEN;
-    SAC1DAC |= DACEN;
+    *DAC_REG |= DACEN;
 
     // Select the DAC as the positive input source
-    SAC0OA |= PSEL_1;
-    SAC1OA |= PSEL_1;
+    *OA_REG |= PSEL_1;
 
     // Select the PGA source for the negative input; the PGA will be configured for buffer mode
-    SAC0OA |= NSEL_1;
-    SAC1OA |= NSEL_1;
+    *OA_REG |= NSEL_1;
 
     // Set the PGA to buffer mode
-    SAC0PGA |= MSEL_1;
-    SAC1PGA |= MSEL_1;
+    *PGA_REG |= MSEL_1;
 
     // Enable the positive input and negative input muxes
-    SAC0OA |= PMUXEN | NMUXEN;
-    SAC1OA |= PMUXEN | NMUXEN;
+    *OA_REG |= PMUXEN | NMUXEN;
 
     // Enable the op-amp outputs
-    SAC0OA |= OAEN;
-    SAC1OA |= OAEN;
+    *OA_REG |= OAEN;
 
-    // Enable smart analog combo (SAC) modules 0 and 1
-    SAC0OA |= SACEN;
-    SAC1OA |= SACEN;
+    // Enable smart analog combo (SAC) module
+    *OA_REG |= SACEN;
 }
 
-void set_dac0_data(uint16_t data)
+void set_dac_data(struct dac_t dac, uint16_t data)
 {
-    SAC0DAT = data;
-}
-
-void set_dac1_data(uint16_t data)
-{
-    SAC1DAT = data;
+    uint16_t *SACDAT = dac.sac_base_addr + OFS_SAC0DAT;
+    *SACDAT = data;
 }
