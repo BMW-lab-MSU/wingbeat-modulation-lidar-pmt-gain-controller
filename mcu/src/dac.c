@@ -19,9 +19,9 @@ void init_dac(struct dac_t dac)
 
     // Define the base addresses for the port multiplexing registers, PxSEL1 and
     // PxSEL0. These offsets are the same for all ports, and are defined in
-    // msp430fr2355.h. We use the port A offsets.
-    uint16_t *PX_SEL0 = dac.port_base_addr + OFS_PASEL0; 
-    uint16_t *PX_SEL1 = dac.port_base_addr + OFS_PASEL1; 
+    // msp430fr2355.h. We use the port 1 offsets.
+    uint16_t *PX_SEL0 = dac.port_base_addr + OFS_P1SEL0; 
+    uint16_t *PX_SEL1 = dac.port_base_addr + OFS_P1SEL1; 
 
     // Enable the 1.5 V internal reference
     /* NOTE: the MSP430FR2355 internal reference defaults to 1.5 V, but
