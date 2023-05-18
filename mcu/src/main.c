@@ -3,6 +3,7 @@
 #include <stdint.h>
 
 #include "dac.h"
+#include "uart.h"
 
 
 void init(void) {
@@ -15,7 +16,10 @@ void init(void) {
     // SET P1.0 direction as output
     P1DIR |= 0x01;
 
+    P6DIR |= BIT6;
+
     init_dac();
+    init_uart();
 }
 
 
@@ -24,16 +28,19 @@ void main(void) {
     init();
 
     // set DAC voltages
-    set_dac0_data(0x0555u);
+    set_dac0_data(0x0a55u);
     set_dac1_data(0x0fffu);
 
-    while(true) {
-        volatile unsigned int i;            // volatile to prevent optimization
+    P1OUT |= BIT1;
 
-        P1OUT ^= 0x01;                      // Toggle P1.0 using exclusive-OR
+     while(true) {
+        //  volatile unsigned int i;            // volatile to prevent optimization
 
-        i = 50000u;                          // SW Delay
-        do i--;
-        while(i != 0);
-    }
+        //  P6OUT ^= BIT6;                      // Toggle P1.0 using exclusive-OR
+
+        //  i = 50000u;                          // SW Delay
+        //  do i--;
+        //  while(i != 0);
+     }
+
 }
