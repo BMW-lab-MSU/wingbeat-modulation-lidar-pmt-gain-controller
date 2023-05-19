@@ -18,4 +18,6 @@ bool rxbuf_is_full(void);
 
 int get_rxbuf(char *buf);
 
+void send_message(const char *buf);
+
 #endif // UART_H

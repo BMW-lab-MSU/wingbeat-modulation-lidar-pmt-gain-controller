@@ -10,6 +10,11 @@ static volatile rxbuf_t rxbuf =
     .is_full = false,
 };
 
+// TODO: implement UART tx method
+void send_message(const char *buf)
+{
+
+}
 
 void init_uart(void)
 {
