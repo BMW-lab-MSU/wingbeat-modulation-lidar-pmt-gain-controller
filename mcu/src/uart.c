@@ -1,4 +1,15 @@
 #include <msp430.h>
+#include <stdbool.h>
+#include <string.h>
+
+#include "uart.h"
+
+static volatile rxbuf_t rxbuf = 
+{
+    .index = 0,
+    .is_full = false,
+};
+
 
 void init_uart(void)
 {
@@ -39,11 +50,88 @@ void init_uart(void)
     __enable_interrupt();
 }
 
+bool rxbuf_is_full(void)
+{
+    return rxbuf.is_full;
+}
+
+int get_rxbuf(char *buf)
+{
+    if (rxbuf.is_full)
+    {
+        strncpy(buf, rxbuf.data, BUF_SIZE);
+        
+        // XXX: once I read the buffer, I want it so we can't keep reading the same buffer over and over again... I would like a better way to do this, though.
+        rxbuf.is_full = false;
+        return 0;
+    }
+    else
+    {
+        return -1;
+    }
+}
+
 #pragma vector = EUSCI_A0_VECTOR
 __interrupt void uart_rx_isr(void)
 {
-    if (UCA0RXBUF == 't')
+    if (rxbuf.is_full)
     {
-        P1OUT ^= BIT0;                      // Toggle P1.0 using exclusive-OR
+        // We already received a full string according to our
+        // protocol, so we'll restart at the beginning for the
+        // new string.
+        rxbuf.is_full = false;
+        rxbuf.index = 0;
     }
+
+    if (rxbuf.index < BUF_SIZE - 1)
+    {
+        // Add the new character to the end of the buffer
+        rxbuf.data[rxbuf.index] = UCA0RXBUF;
+        rxbuf.index += 1;
+
+        // Carriage return indicates that the sender is done
+        // with their string
+        if (rxbuf.data[rxbuf.index - 1] == '\r')
+        {
+            // Null-terminate the string
+            rxbuf.data[rxbuf.index] = '\0';
+            
+            // XXX: the buffer isn't necessarily full here;
+            // in this case, this really means that we got
+            // a carriage return --- that's all. However, a
+            // carriage return indicates that the sender is done
+            // sending, so we'll assume that they sent their
+            // entire message even if it's smaller than our buffer size.
+            rxbuf.is_full = true;
+
+            // The current string is over, so we'll start at the beginning
+            // of the buffer for the next character that's sent.
+            rxbuf.index = 0;
+
+            // TODO: remove LED toggle
+            P1OUT ^= BIT0;                      // Toggle P1.0 using exclusive-OR
+        }
+    }
+    else
+    {
+        // The sender reached the end of buffer. End the buffer with a
+        // null character so just so we don't have any weird buffer
+        // overruns down the line.
+        rxbuf.data[BUF_SIZE - 1] = '\0';
+
+        rxbuf.is_full = true;
+        
+        // Restart at the beginning of the buffer next time.
+        rxbuf.index = 0;
+    }
+
+    // Manually clear the interrupt flag. Reading UCAxRXBUF
+    // automatically clears the interrupt flag, but we don't
+    // bother reading the buffer when the sender reaches the end
+    // of the buffer (since we always want the buffer to end with
+    // a null character). If the interrupt flag doesn't get cleared,
+    // the interrupt will fire again. We'll always clear the interrupt
+    // flag here at the end even if it has already been cleared by
+    // reading UCAxRXBUF.
+    UCA0IFG &= ~UCRXIFG;
 }
