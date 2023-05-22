@@ -4,8 +4,8 @@
 #include <stdint.h>
 
 struct dac_t {
-    const uint16_t sac_base_addr;
-    const uint16_t port_base_addr;
+    const uint16_t *sac_base_addr;
+    const uint16_t *port_base_addr;
     const uint16_t port_bit;
     uint16_t data;
 };
