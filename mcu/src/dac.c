@@ -13,15 +13,15 @@ void init_dac(struct dac_t dac)
     // defines the base address of the SAC module. The register offsets for
     // each module are the same, so we use the SAC0 offset defintions, which
     // are defined in msp420fr2355.h
-    uint16_t *DAC_REG = dac.sac_base_addr + OFS_SAC0DAC;
-    uint16_t *OA_REG = dac.sac_base_addr + OFS_SAC0OA;
-    uint16_t *PGA_REG = dac.sac_base_addr + OFS_SAC0PGA;
+    uint16_t *DAC_REG = (uint16_t *) (dac.sac_base_addr + OFS_SAC0DAC);
+    uint16_t *OA_REG = (uint16_t *) (dac.sac_base_addr + OFS_SAC0OA);
+    uint16_t *PGA_REG = (uint16_t *) (dac.sac_base_addr + OFS_SAC0PGA);
 
     // Define the base addresses for the port multiplexing registers, PxSEL1 and
     // PxSEL0. These offsets are the same for all ports, and are defined in
     // msp430fr2355.h. We use the port 1 offsets.
-    uint16_t *PX_SEL0 = dac.port_base_addr + OFS_P1SEL0; 
-    uint16_t *PX_SEL1 = dac.port_base_addr + OFS_P1SEL1; 
+    uint16_t *PX_SEL0 = (uint16_t *) (dac.port_base_addr + OFS_P1SEL0); 
+    uint16_t *PX_SEL1 = (uint16_t *) (dac.port_base_addr + OFS_P1SEL1); 
 
     // Enable the 1.5 V internal reference
     /* NOTE: the MSP430FR2355 internal reference defaults to 1.5 V, but
@@ -62,8 +62,9 @@ void init_dac(struct dac_t dac)
     *OA_REG |= SACEN;
 }
 
+// TODO: set_dac_data --> set_dac_voltage. set_dac_voltage() will convert the voltage into the correct 12-bit number, then write that to the register.
 void set_dac_data(struct dac_t dac, uint16_t data)
 {
-    uint16_t *SACDAT = dac.sac_base_addr + OFS_SAC0DAT;
+    uint16_t *SACDAT = (uint16_t *) (dac.sac_base_addr + OFS_SAC0DAT);
     *SACDAT = data;
 }
