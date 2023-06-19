@@ -16,14 +16,14 @@ void test_parser_not_enough_chars_4()
 {
     const char *input[] = "t123\r";
 
-    TEST_ASSERT_FALSE(validate_input(input));
+    TEST_ASSERT_FALSE(validate_format(input));
 }
 
 void test_parser_not_enough_chars_3()
 {
     const char *input[] = "s32\r";
 
-    TEST_ASSERT_FALSE(validate_input(input));
+    TEST_ASSERT_FALSE(validate_format(input));
 
 }
 
@@ -31,7 +31,7 @@ void test_parser_not_enough_chars_2()
 {
     const char *input[] = "a4\r";
 
-    TEST_ASSERT_FALSE(validate_input(input));
+    TEST_ASSERT_FALSE(validate_format(input));
 
 }
 
@@ -39,7 +39,7 @@ void test_parser_not_enough_chars_1()
 {
     const char *input[] = "2\r";
 
-    TEST_ASSERT_FALSE(validate_input(input));
+    TEST_ASSERT_FALSE(validate_format(input));
 
 }
 
@@ -47,56 +47,56 @@ void test_parser_not_enough_chars_no_carriage_return()
 {
     const char *input[] = "s2";
 
-    TEST_ASSERT_FALSE(validate_input(input));
+    TEST_ASSERT_FALSE(validate_format(input));
 }
 
 void test_parser_first_char_is_number()
 {
     const char *input[] = "12345\r";
 
-    TEST_ASSERT_FALSE(validate_input(input));
+    TEST_ASSERT_FALSE(validate_format(input));
 }
 
 void test_parser_first_char_not_pmt_type()
 {
     const char *input[] = "e0123\r";
 
-    TEST_ASSERT_FALSE(validate_input(input));
+    TEST_ASSERT_FALSE(validate_format(input));
 }
 
 void test_parser_valid_input_1()
 {
     const char *input[] = "t0156\r";
 
-    TEST_ASSERT_TRUE(validate_input(input));
+    TEST_ASSERT_TRUE(validate_format(input));
 }
 
 void test_parser_valid_input_2()
 {
     const char *input[] = "t1018\r";
 
-    TEST_ASSERT_TRUE(validate_input(input));
+    TEST_ASSERT_TRUE(validate_format(input));
 }
 
 void test_parser_valid_input_3()
 {
     const char *input[] = "s0028\r";
 
-    TEST_ASSERT_TRUE(validate_input(input));
+    TEST_ASSERT_TRUE(validate_format(input));
 }
 
 void test_parser_valid_input_4()
 {
     const char *input[] = "s1920\r";
 
-    TEST_ASSERT_TRUE(validate_input(input));
+    TEST_ASSERT_TRUE(validate_format(input));
 }
 
 void test_parser_valid_input_5()
 {
     const char *input[] = "t0000\r";
 
-    TEST_ASSERT_TRUE(validate_input(input));
+    TEST_ASSERT_TRUE(validate_format(input));
 }
 
 

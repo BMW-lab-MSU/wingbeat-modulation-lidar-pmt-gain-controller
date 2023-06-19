@@ -12,10 +12,10 @@ typedef struct {
     uint16_t data;
 } pmt_data_t;  
 
-bool validate_input(const char *input);
+bool validate_format(const char *input);
 
 bool validate_voltage_bounds(const uint16_t voltage, const uint16_t upper_bound, const uint16_t lower_bound);
 
-void parse_command(const char *input, pmt_data_t *parsed);
+bool parse_command(const char *input, pmt_data_t *parsed);
 
 #endif // PARSER_H
