@@ -2,6 +2,8 @@
 
 #include "dac.h"
 
+#include <stdio.h>
+
 void init_dac(struct dac_t dac)
 {
     // I used section 2.5 of the following app note to figure out
@@ -62,9 +64,12 @@ void init_dac(struct dac_t dac)
     *OA_REG |= SACEN;
 }
 
-// TODO: set_dac_data --> set_dac_voltage. set_dac_voltage() will convert the voltage into the correct 12-bit number, then write that to the register.
-void set_dac_data(struct dac_t dac, uint16_t data)
+// set_dac_voltage() will convert the voltage into the correct 12-bit number, 
+// then write that to the register.
+void set_dac_voltage(struct dac_t dac, uint16_t data)
 {
+    uint16_t scaled_data = (float)data * 2.73;
+
     uint16_t *SACDAT = (uint16_t *) (dac.sac_base_addr + OFS_SAC0DAT);
-    *SACDAT = data;
+    *SACDAT = scaled_data;//was data, changed so as to not screw it all up
 }

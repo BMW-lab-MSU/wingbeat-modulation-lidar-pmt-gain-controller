@@ -46,8 +46,8 @@ void main(void)
     init();
 
     // set DAC voltages
-    set_dac_data(dac2, 0x0abcu);
-    set_dac_data(dac3, 0x0fffu);
+    //set_dac_voltage(dac2, 1234);
+    set_dac_voltage(dac3, 600);
 
     P1OUT |= BIT1;
 
@@ -59,7 +59,7 @@ void main(void)
             get_rxbuf(buf);
 
             // parse the stuff
-
+            // parse_command(buf,...)
             // write to dac
 
             // TEMPORARY: send the buffer we received over UART for verification.

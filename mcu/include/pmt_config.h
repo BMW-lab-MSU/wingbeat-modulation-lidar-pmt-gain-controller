@@ -25,34 +25,16 @@ typedef struct
     const uint16_t control_voltage_lower_bound;
 } pmt_info_t;
 
-// // Signal PMT info
-// // TODO: this comment sucks. add real documentation
-// static pmt_info_t signal_pmt_info = 
-// {
-//     .pmt = SIGNAL,
-//     .control_voltage_upper_bound = 1000,
-//     .control_voltage_lower_bound = 250
-// };
-
-// // Trigger PMT info
-// // TODO: this comment sucks. add real documentation
-// static pmt_info_t trigger_pmt_info =
-// {
-//     .pmt = TRIGGER,
-//     .control_voltage_upper_bound = 900,
-//     .control_voltage_lower_bound = 250
-// };
-
 static const pmt_info_t pmts[] = 
 {
     // Output signal PMT info
-    {
+    [SIGNAL] = {
         .pmt = SIGNAL,
         .control_voltage_upper_bound = 1000,
         .control_voltage_lower_bound = 250,
     },
     // Trigger PMT info
-    {
+    [TRIGGER] = {
         .pmt = TRIGGER,
         .control_voltage_upper_bound = 900,
         .control_voltage_lower_bound = 250,
