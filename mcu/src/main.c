@@ -4,6 +4,8 @@
 
 #include "dac.h"
 #include "uart.h"
+#include "parser.h"
+#include "pmt_config.h"
 
 
 void printU(char* string);
@@ -59,20 +61,16 @@ void main(void)
         if(rxbuf_is_full())
         {
             get_rxbuf(buf);
-
-            // parse the stuff
-            // parse_command(buf,...)
-            // write to dac
             
-            /*
-            if(parse_command(buf))
+            pmt_data_t parsed;
+            
+            if(parse_command(buf, &parsed))
             {
                 printU("fuck yeah!\r");
             } else {
                 printU("fuck no!\r");
-            }*/
+            }
             printU(buf);
-
         }
     }
 
