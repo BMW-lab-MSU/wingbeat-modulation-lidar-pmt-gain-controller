@@ -10,10 +10,25 @@ static volatile rxbuf_t rxbuf =
     .is_full = false,
 };
 
-// TODO: implement UART tx method
+// TODO: make it graceful with interrupts
 void send_message(const char *buf)
 {
+    int i = 0;
+    int j;
+    while(buf[i] != '\0')
+    {
+        UCA0TXBUF = buf[i];      
 
+        // delay loop to slow down UART transmission.
+        // TODO: there must be a better way to do this and actually send the chars at the baud rate, but this is just temporary for now...
+        for (j = 0; j < 1000; j++)
+        {
+            __asm__("NOP");
+        }
+        i++;
+    }
+
+    UCA0TXBUF = '\n';
 }
 
 void init_uart(void)
