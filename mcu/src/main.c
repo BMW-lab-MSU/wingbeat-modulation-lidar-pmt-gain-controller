@@ -55,39 +55,40 @@ void main(void)
     {
         if(rxbuf_is_full())
         {
-
             get_rxbuf(buf);
 
             // parse the stuff
             // parse_command(buf,...)
             // write to dac
-
-            // TEMPORARY: send the buffer we received over UART for verification.
-            size_t i = 0;
-            size_t j = 0;
-            while(buf[i] != '\0')
+            
+            if(parse_command(buf))
             {
-                if (buf[i] == '\r')
-                {
-                    // Add a linefeed for readability
-                    UCA0TXBUF = buf[i];
-                    UCA0TXBUF = '\n';
-                }
-                else
-                {
-                    UCA0TXBUF = buf[i];
-                }
-                
-                // delay loop to slow down UART transmission.
-                // TODO: there must be a better way to do this and actually send the chars at the baud rate, but this is just temporary for now...
-                for (j = 0; j < 1000; j++)
-                {
-                    __asm__("NOP");
-                }
-                i++;
+                printU("fuck yeah!\r");
+            } else {
+                printU("fuck no!\r");
             }
+            printU(buf);
 
         }
     }
 
+}
+
+void printU(const char* string)
+{
+    int i = 0;
+    int j;
+    while(string[i] != '\0')
+    {
+        UCA0TXBUF = string[i];       
+        // delay loop to slow down UART transmission.
+        // TODO: there must be a better way to do this and actually send the chars at the baud rate, but this is just temporary for now...
+        for (j = 0; j < 1000; j++)
+        {
+            __asm__("NOP");
+        }
+        i++;
+    }
+
+    UCA0TXBUF = '\n';
 }

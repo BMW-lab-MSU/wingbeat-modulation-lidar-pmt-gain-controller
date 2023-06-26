@@ -71,5 +71,5 @@ void set_dac_voltage(struct dac_t dac, uint16_t data)
     uint16_t scaled_data = (float)data * 2.73;
 
     uint16_t *SACDAT = (uint16_t *) (dac.sac_base_addr + OFS_SAC0DAT);
-    *SACDAT = scaled_data;//was data, changed so as to not screw it all up
+    *SACDAT = scaled_data;
 }
