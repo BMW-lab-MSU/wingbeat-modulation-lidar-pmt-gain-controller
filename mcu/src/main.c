@@ -7,9 +7,6 @@
 #include "parser.h"
 #include "pmt_config.h"
 
-
-void printU(char* string);
-
 // Set up DACs
 // TODO: maybe I should pass these into the init function instead of using globals...
 struct dac_t dac2 =
@@ -64,34 +61,14 @@ void main(void)
             {
                 if(parsed.pmt == SIGNAL)
                 {
-                    set_dac_voltage(dac2, parsed.data);
-                } else {
                     set_dac_voltage(dac3, parsed.data);
+                } else {
+                    set_dac_voltage(dac2, parsed.data);
                 }
             } else {
-                printU("invalid input\r");
+                send_message("invalid input\r");
             }
-            printU(buf);
+            send_message(buf);
         }
     }
-}
-
-void printU(char* string)
-{
-    int i = 0;
-    int j;
-    while(string[i] != '\0')
-    {
-        UCA0TXBUF = string[i];      
-
-        // delay loop to slow down UART transmission.
-        // TODO: there must be a better way to do this and actually send the chars at the baud rate, but this is just temporary for now...
-        for (j = 0; j < 1000; j++)
-        {
-            __asm__("NOP");
-        }
-        i++;
-    }
-
-    UCA0TXBUF = '\n';
 }
