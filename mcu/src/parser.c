@@ -3,6 +3,13 @@
 #include "string.h"
 #include "ctype.h"
 
+// from here: https://stackoverflow.com/questions/9907160/how-to-convert-enum-names-to-string-in-c
+const char const pmt_type_str[] = 
+{
+    [SIGNAL] = 's',
+    [TRIGGER] = 't'
+};
+
 bool parse_command(const char *input, pmt_data_t *parsed)
 {
     // validate command format

@@ -8,13 +8,6 @@ typedef enum {
     TRIGGER
 } pmt_type;
 
-// from here: https://stackoverflow.com/questions/9907160/how-to-convert-enum-names-to-string-in-c
-const char const pmt_type_str[] = 
-{
-    [SIGNAL] = 's',
-    [TRIGGER] = 't'
-};
-
 typedef struct
 {
     // PMT type from the pmt_type enum
