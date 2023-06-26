@@ -50,10 +50,6 @@ void main(void)
 
     init();
 
-    // set DAC voltages
-    //set_dac_voltage(dac2, 1234);
-    set_dac_voltage(dac3, 600);
-
     P1OUT |= BIT1;
 
     while(true)
@@ -66,14 +62,18 @@ void main(void)
             
             if(parse_command(buf, &parsed))
             {
-                printU("fuck yeah!\r");
+                if(parsed.pmt == SIGNAL)
+                {
+                    set_dac_voltage(dac2, parsed.data);
+                } else {
+                    set_dac_voltage(dac3, parsed.data);
+                }
             } else {
-                printU("fuck no!\r");
+                printU("invalid input\r");
             }
             printU(buf);
         }
     }
-
 }
 
 void printU(char* string)
