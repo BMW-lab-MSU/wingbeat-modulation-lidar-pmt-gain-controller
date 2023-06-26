@@ -10,7 +10,7 @@
 typedef struct {
     pmt_type pmt;
     uint16_t data;
-} pmt_data_t;  
+} pmt_data_t;
 
 bool validate_format(const char *input);
 

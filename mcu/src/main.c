@@ -5,6 +5,9 @@
 #include "dac.h"
 #include "uart.h"
 
+
+void printU(char* string);
+
 // Set up DACs
 // TODO: maybe I should pass these into the init function instead of using globals...
 struct dac_t dac2 =
@@ -61,12 +64,13 @@ void main(void)
             // parse_command(buf,...)
             // write to dac
             
+            /*
             if(parse_command(buf))
             {
                 printU("fuck yeah!\r");
             } else {
                 printU("fuck no!\r");
-            }
+            }*/
             printU(buf);
 
         }
@@ -74,7 +78,7 @@ void main(void)
 
 }
 
-void printU(const char* string)
+void printU(char* string)
 {
     int i = 0;
     int j;

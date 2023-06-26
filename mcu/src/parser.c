@@ -19,15 +19,9 @@ bool parse_command(const char *input, pmt_data_t *parsed)
         parsed->pmt = TRIGGER;
     }
     
-    const char* number = input[1];
+    const char* number = &input[1];
     uint16_t voltage = atoi(number);
     parsed->data = voltage;
-
-    // validate voltage range based on the PMT type
-    if(!validate_voltage_bounds(voltage, pmts[parsed->pmt].control_voltage_upper_bound, pmts[parsed->pmt].control_voltage_lower_bound))
-    {
-        return false;
-    }
 
     // if all is well, store the PMT type and voltage in the parsed structure and return true,
     // otherwise, return false to tell the caller that the command isn't valid
@@ -47,8 +41,12 @@ bool validate_format(const char *input)
     return false;
 }
 
-//IMPLEMENT THIS
+// might put this into parse_command
 bool validate_voltage_bounds(const uint16_t voltage, const uint16_t upper_bound, const uint16_t lower_bound)
 {
+    if(voltage > upper_bound | voltage < lower_bound)
+    {
+        return false;
+    }
     return true;
 }
