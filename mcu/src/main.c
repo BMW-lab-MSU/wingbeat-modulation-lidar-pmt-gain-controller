@@ -82,7 +82,8 @@ void printU(char* string)
     int j;
     while(string[i] != '\0')
     {
-        UCA0TXBUF = string[i];       
+        UCA0TXBUF = string[i];      
+
         // delay loop to slow down UART transmission.
         // TODO: there must be a better way to do this and actually send the chars at the baud rate, but this is just temporary for now...
         for (j = 0; j < 1000; j++)
