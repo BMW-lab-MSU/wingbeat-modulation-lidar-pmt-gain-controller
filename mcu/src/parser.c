@@ -32,6 +32,11 @@ bool parse_command(const char *input, pmt_data_t *parsed)
 
     // if all is well, store the PMT type and voltage in the parsed structure and return true,
     // otherwise, return false to tell the caller that the command isn't valid
+    //uint16_t bound = pmts[parsed->pmt].control_voltage_upper_bound;
+    if(!validate_voltage_bounds(voltage,pmts[parsed->pmt].control_voltage_upper_bound,pmts[parsed->pmt].control_voltage_lower_bound))
+    {
+        return false;
+    }
 
     return true;
 }
@@ -48,7 +53,7 @@ bool validate_format(const char *input)
     return false;
 }
 
-// might put this into parse_command
+// might put this into parse_command if we stop caring about tests
 bool validate_voltage_bounds(const uint16_t voltage, const uint16_t upper_bound, const uint16_t lower_bound)
 {
     if(voltage > upper_bound | voltage < lower_bound)
