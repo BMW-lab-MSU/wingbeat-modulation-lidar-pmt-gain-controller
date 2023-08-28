@@ -66,12 +66,13 @@ void init_dac(struct dac_t dac)
 
 // set_dac_voltage() will convert the voltage into the correct 12-bit number, 
 // then write that to the register.
-void set_dac_voltage(struct dac_t dac, uint16_t data)
+void set_dac_voltage(struct dac_t dac, uint16_t voltage)
 {
     static const float CONVERSION_FACTOR = DAC_VOLTAGE_REF_MV / ((2 << DAC_N_BITS) - 1);
 
-    uint16_t scaled_data = (uint16_t) ((float)data * CONVERSION_FACTOR);
+    uint16_t dac_data = (uint16_t) ((float)voltage * CONVERSION_FACTOR);
 
     uint16_t *SACDAT = (uint16_t *) (dac.sac_base_addr + OFS_SAC0DAT);
-    *SACDAT = scaled_data;
+
+    *SACDAT = dac_data;
 }
