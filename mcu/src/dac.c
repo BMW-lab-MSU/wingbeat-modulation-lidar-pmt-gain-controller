@@ -68,7 +68,9 @@ void init_dac(struct dac_t dac)
 // then write that to the register.
 void set_dac_voltage(struct dac_t dac, uint16_t data)
 {
-    uint16_t scaled_data = (float)data * 2.73;
+    static const float CONVERSION_FACTOR = DAC_VOLTAGE_REF_MV / ((2 << DAC_N_BITS) - 1);
+
+    uint16_t scaled_data = (uint16_t) ((float)data * CONVERSION_FACTOR);
 
     uint16_t *SACDAT = (uint16_t *) (dac.sac_base_addr + OFS_SAC0DAT);
     *SACDAT = scaled_data;
