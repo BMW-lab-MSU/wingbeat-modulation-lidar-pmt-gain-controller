@@ -4,6 +4,12 @@
 
 #include <stdio.h>
 
+// Make sure DAC_VOLTAGE_REF_MV is 1500 mV, since we don't currently
+// support any other internal voltage references
+#if DAC_VOLTAGE_REF_MV != 1500
+#error "DAC_VOLTAGE_REF_MV must be 1500 since we only support the 1.5 V internal reference"
+#endif
+
 void init_dac(struct dac_t dac)
 {
     // I used section 2.5 of the following app note to figure out
