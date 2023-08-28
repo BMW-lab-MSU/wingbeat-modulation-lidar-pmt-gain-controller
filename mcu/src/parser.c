@@ -1,7 +1,9 @@
 // #include "pmt_config.h"
+#include <stdlib.h>
+#include <string.h>
+#include <ctype.h>
+
 #include "parser.h"
-#include "string.h"
-#include "ctype.h"
 
 // from here: https://stackoverflow.com/questions/9907160/how-to-convert-enum-names-to-string-in-c
 const char const pmt_type_str[] = 
