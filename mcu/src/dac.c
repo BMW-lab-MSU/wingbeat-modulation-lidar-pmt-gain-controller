@@ -74,7 +74,8 @@ void init_dac(struct dac_t dac)
 // then write that to the register.
 void set_dac_voltage(struct dac_t dac, uint16_t voltage)
 {
-    static const float CONVERSION_FACTOR = DAC_VOLTAGE_REF_MV / ((2 << DAC_N_BITS) - 1);
+    // TODO: document this equation
+    static const float CONVERSION_FACTOR = ((float)((2 << (DAC_N_BITS - 1)) - 1)) / ((float)DAC_VOLTAGE_REF_MV);
 
     uint16_t dac_data = (uint16_t) ((float)voltage * CONVERSION_FACTOR);
 
