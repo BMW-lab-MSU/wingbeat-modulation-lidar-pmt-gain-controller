@@ -8,18 +8,24 @@
 #include "pmt_config.h"
 
 // Set up DACs
-// TODO: maybe I should pass these into the init function instead of using globals...
-struct dac_t dac2 =
+// #pragma PERSISTENT stores these variables in FRAM so they persist across
+// power cycles. This way the DAC voltages can be set once, rather than having
+// to set them every time we power on the system.
+
+__attribute__((persistent)) static struct dac_t dac2 =
 {
     .sac_base_addr = SAC2_BASE,
     .port_base_addr = P3_BASE,
     .port_bit = BIT1,
+    .data = 0
 };
-struct dac_t dac3 =
+
+__attribute__((persistent)) static struct dac_t dac3 =
 {
     .sac_base_addr = SAC3_BASE,
     .port_base_addr = P3_BASE,
     .port_bit = BIT5,
+    .data = 0
 };
 
 void init_unused(void)
@@ -73,6 +79,10 @@ void main(void)
 
     init();
 
+    // Set the saved DAC voltages at startup
+    set_dac_voltage(&dac2, dac2.data);
+    set_dac_voltage(&dac3, dac3.data);
+
     P1OUT |= BIT1;
 
     while(true)
@@ -87,9 +97,9 @@ void main(void)
             {
                 if(parsed.pmt == SIGNAL)
                 {
-                    set_dac_voltage(dac3, parsed.data);
+                    set_dac_voltage(&dac3, parsed.data);
                 } else {
-                    set_dac_voltage(dac2, parsed.data);
+                    set_dac_voltage(&dac2, parsed.data);
                 }
             } else {
                 send_message("invalid input\r");

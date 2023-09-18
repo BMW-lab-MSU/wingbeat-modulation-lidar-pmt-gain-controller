@@ -17,6 +17,6 @@ struct dac_t {
 void init_dac(struct dac_t dac);
 
 // sets voltage (input in mV) to DAC
-void set_dac_voltage(struct dac_t dac, uint16_t voltage);
+void set_dac_voltage(struct dac_t *dac, uint16_t voltage);
 
 #endif // DAC_H
