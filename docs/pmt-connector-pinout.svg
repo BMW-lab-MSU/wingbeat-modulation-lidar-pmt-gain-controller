@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="500"
+   height="500"
+   viewBox="0 0 132.29167 132.29167"
+   version="1.1"
+   id="svg1"
+   inkscape:version="1.3 (0e150ed6c4, 2023-07-21)"
+   sodipodi:docname="pmt-connector-pinout.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#ffffff"
+     bordercolor="#999999"
+     borderopacity="1"
+     inkscape:showpageshadow="0"
+     inkscape:pageopacity="0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="pt"
+     showgrid="true"
+     inkscape:zoom="1"
+     inkscape:cx="189"
+     inkscape:cy="290.5"
+     inkscape:window-width="1880"
+     inkscape:window-height="1015"
+     inkscape:window-x="20"
+     inkscape:window-y="510"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1">
+    <inkscape:grid
+       id="grid1"
+       units="px"
+       originx="0"
+       originy="0"
+       spacingx="0.26458334"
+       spacingy="0.26458334"
+       empcolor="#0099e5"
+       empopacity="0.30196078"
+       color="#0099e5"
+       opacity="0.14901961"
+       empspacing="5"
+       dotted="false"
+       gridanglex="30"
+       gridanglez="30"
+       visible="true" />
+  </sodipodi:namedview>
+  <defs
+     id="defs1" />
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <g
+       id="g6"
+       transform="translate(3.4330685)">
+      <path
+         id="path1"
+         style="fill:none;stroke:#1a1a1a;stroke-width:1.1358;stroke-linecap:butt;stroke-linejoin:round;stroke-dasharray:none;paint-order:markers fill stroke"
+         d="m 62.712775,24.162692 c -21.605238,-1.74e-4 -39.119786,17.514375 -39.119612,39.119613 0.0016,19.471237 14.164207,35.869601 33.440619,38.617155 -0.09762,-0.0915 0,0.13763 0,0 l -6e-6,-9.713078 c 0,-0.282341 0.251632,-0.509111 0.564572,-0.509111 h 10.228841 c 0.312939,0 0.564572,0.22677 0.564572,0.509111 l 8e-6,9.713078 c 0,0.13763 0.09762,-0.0915 0,0 C 87.668181,99.151904 101.83081,82.753542 101.83237,63.282305 101.83255,41.677067 84.318,24.162518 62.712762,24.162692 Z"
+         sodipodi:nodetypes="cccsssssscccc" />
+      <circle
+         style="fill:none;stroke:#1a1a1a;stroke-width:0.927183;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none"
+         id="path3"
+         cx="39.996803"
+         cy="63.282307"
+         r="5.2154021" />
+      <circle
+         style="fill:none;stroke:#1a1a1a;stroke-width:0.927183;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none"
+         id="path3-5"
+         cx="62.71278"
+         cy="40.56633"
+         r="5.2154021" />
+      <circle
+         style="fill:none;stroke:#1a1a1a;stroke-width:0.927183;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none"
+         id="path3-5-2"
+         cx="85.428749"
+         cy="63.282307"
+         r="5.2154021" />
+      <text
+         xml:space="preserve"
+         style="font-size:7.47889px;line-height:1.25;font-family:'TeX Gyre Pagella';-inkscape-font-specification:'TeX Gyre Pagella, Normal';stroke-width:0.567899"
+         x="37.551922"
+         y="66.008377"
+         id="text3"><tspan
+           sodipodi:role="line"
+           id="tspan3"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.47889px;font-family:'DejaVu Sans';-inkscape-font-specification:'DejaVu Sans';stroke-width:0.567899"
+           x="37.551922"
+           y="66.008377">1</tspan></text>
+      <text
+         xml:space="preserve"
+         style="font-size:7.05556px;line-height:1.25;font-family:'TeX Gyre Pagella';-inkscape-font-specification:'TeX Gyre Pagella, Normal';stroke-width:0.567899"
+         x="60.563038"
+         y="43.184605"
+         id="text3-0"><tspan
+           sodipodi:role="line"
+           id="tspan3-4"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.05556px;font-family:'DejaVu Sans';-inkscape-font-specification:'DejaVu Sans';stroke-width:0.567899"
+           x="60.563038"
+           y="43.184605">2</tspan></text>
+      <text
+         xml:space="preserve"
+         style="font-size:7.05556px;line-height:1.25;font-family:'TeX Gyre Pagella';-inkscape-font-specification:'TeX Gyre Pagella, Normal';stroke-width:0.567899"
+         x="83.198051"
+         y="65.850624"
+         id="text3-0-8"><tspan
+           sodipodi:role="line"
+           id="tspan3-4-1"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.05556px;font-family:'DejaVu Sans';-inkscape-font-specification:'DejaVu Sans';stroke-width:0.567899"
+           x="83.198051"
+           y="65.850624">3</tspan></text>
+      <text
+         xml:space="preserve"
+         style="font-size:7.47889px;line-height:1.25;font-family:'TeX Gyre Pagella';-inkscape-font-specification:'TeX Gyre Pagella, Normal';stroke-width:0.567899"
+         x="31.433329"
+         y="76.712509"
+         id="text4"><tspan
+           sodipodi:role="line"
+           id="tspan4"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.47889px;font-family:'DejaVu Sans';-inkscape-font-specification:'DejaVu Sans';stroke-width:0.567899"
+           x="31.433329"
+           y="76.712509">GND</tspan></text>
+      <text
+         xml:space="preserve"
+         style="font-size:7.05556px;line-height:1.25;font-family:'TeX Gyre Pagella';-inkscape-font-specification:'TeX Gyre Pagella, Normal';stroke-width:0.567899"
+         x="55.31073"
+         y="53.879742"
+         id="text4-43"><tspan
+           sodipodi:role="line"
+           id="tspan4-0"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.05556px;font-family:'DejaVu Sans';-inkscape-font-specification:'DejaVu Sans';stroke-width:0.567899"
+           x="55.31073"
+           y="53.879742">V<tspan
+   style="font-size:65%;baseline-shift:sub"
+   id="tspan13">cont</tspan></tspan></text>
+      <text
+         xml:space="preserve"
+         style="font-size:7.05556px;line-height:1.25;font-family:'TeX Gyre Pagella';-inkscape-font-specification:'TeX Gyre Pagella, Normal';stroke-width:0.567899"
+         x="77.117455"
+         y="76.712509"
+         id="text4-4"><tspan
+           sodipodi:role="line"
+           id="tspan4-3"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.05556px;font-family:'DejaVu Sans';-inkscape-font-specification:'DejaVu Sans';stroke-width:0.567899"
+           x="77.117455"
+           y="76.712509">PWR</tspan></text>
+    </g>
+    <text
+       xml:space="preserve"
+       style="font-size:7.05556px;line-height:1.25;font-family:'DejaVu Sans';-inkscape-font-specification:'DejaVu Sans';stroke-width:0.264583"
+       x="13.249808"
+       y="11.449775"
+       id="text6"><tspan
+         sodipodi:role="line"
+         id="tspan6"
+         style="stroke-width:0.264583"
+         x="13.249808"
+         y="11.449775">Front of socket connector</tspan><tspan
+         sodipodi:role="line"
+         style="stroke-width:0.264583"
+         x="13.249808"
+         y="20.269224"
+         id="tspan14">Part #: C091 31G003 209 5 U </tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:7.05556px;line-height:1.25;font-family:'DejaVu Sans';-inkscape-font-specification:'DejaVu Sans';stroke-width:0.264583"
+       x="18.596596"
+       y="116.36015"
+       id="text7"><tspan
+         sodipodi:role="line"
+         id="tspan7"
+         style="stroke-width:0.264583"
+         x="18.596596"
+         y="116.36015">PWR: 11.5 to 15.5 V</tspan><tspan
+         sodipodi:role="line"
+         style="stroke-width:0.264583"
+         x="18.596596"
+         y="125.1796"
+         id="tspan8">V<tspan
+   style="font-size:65%;baseline-shift:sub"
+   id="tspan12">cont</tspan>: gain control voltage</tspan></text>
+  </g>
+</svg>
